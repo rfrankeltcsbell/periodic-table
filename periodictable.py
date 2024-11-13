@@ -14,7 +14,8 @@ def create_csv_files():
       writer.writerow({'Symbol':'H','Name':'Hydrogen','Atomic Number'1,'Atomic Weight':1.008})
       Writer.writerow({'Symbol':'O','Name':'Oxygen','Atomic Number'8,'Atomic Weight':15.999})
       Writer.wrtierow({'Symbol':'C','Name':'Carbon','Atomic Number':6,'Atomic Weight':12.011})
-      
+      Writer.writerow({'Symbol':'N','Name':'Nitrogen','Atomic Number':7,'Atomic Weight':14.007})
+      Writer.writerow({'Symbol':'Li','Name':'Lithium','Atomic Number':3,'Atomic Weight':6.9410})
       print("Created Periodic_table.csv")
       
       # a file path is location on your computer
@@ -83,3 +84,24 @@ def menu(elements,compounds_file):
             compounds = load_compounds(compounds_file)
             for compound in compounds:
                 print (f"{compound['name']} is made of {compound['elements']} in proportions {compound['proportions']}")
+        elif choice =='3':
+            compound = create_compound(elements)
+            save_compound(compound,compounds_file)
+        elif choice == '4':
+            # You can implement a function to break down compounds here
+            pass
+        elif choice == '5':
+            print("Exiting...")
+            break
+        else:
+            print("Invaild choice, please try again.")
+
+if __name__ =="__main__":
+    elements_file='periodic_table.csv'
+    compounds_file = 'compounds.csv'
+
+    # create CSV files if they don't exist
+    create_csv_files()
+
+    elements = load_elements(elements_file)
+    menu(elements,compounds_file)
